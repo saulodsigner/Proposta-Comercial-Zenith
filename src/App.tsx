@@ -31,6 +31,18 @@ import advogado4 from './advogado-4.jpg';
 import saask5 from './saask-5.jpg';
 import proposalConfig from './proposal-config.json';
 
+const IconMap: Record<string, any> = {
+  CheckCircle2,
+  Clock,
+  FileText,
+  Layout,
+  Code,
+  Send,
+  ShieldCheck,
+  Zap,
+  Target
+};
+
 const Section = ({ children, className, id }: { children: React.ReactNode, className?: string, id?: string }) => (
   <section id={id} className={cn("py-20 px-6 md:px-12 max-w-7xl mx-auto relative z-10", className)}>
     {children}
@@ -430,36 +442,33 @@ export default function App() {
             />
           </div>
 
-          {[
-            { title: "Briefing & Estratégia", desc: "Mergulho fundo no seu modelo de negócio para definir objetivos claros e alinhar expectativas.", icon: FileText, time: "Fase 01" },
-            { title: "Arquitetura & Copy", desc: "Estruturação da jornada do usuário e escrita persuasiva focada em conversão psicológica.", icon: Layout, time: "Fase 02" },
-            { title: "Interface de Alto Impacto", desc: "Criação visual exclusiva, seguindo as tendências globais de UI/UX e design de luxo.", icon: Target, time: "Fase 03" },
-            { title: "Desenvolvimento & SEO", desc: "Implementação impactante, velocidade de carregamento e otimizações para o Google.", icon: Code, time: "Fase 04" },
-            { title: "Entrega & Suporte", desc: "Entrega das chaves, suporte e acompanhamento para garantir estabilidade.", icon: Send, time: "Fase 05" },
-          ].map((step, i) => (
-            <motion.div
-              key={step.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className={cn(
-                "relative flex items-center mb-32 last:mb-0",
-                i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              )}
-            >
-              {/* Dot */}
-              <div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-background border border-accent-primary z-10 shadow-[0_0_15px_rgba(169,71,255,0.5)]" />
-              
-              <div className={cn(
-                "ml-16 md:ml-0 md:w-1/2",
-                i % 2 === 0 ? "md:pr-24 md:text-right" : "md:pl-24 md:text-left"
-              )}>
-                <div className="text-[10px] font-bold text-accent-primary uppercase tracking-[0.3em] mb-4">{step.time}</div>
-                <h3 className="text-3xl font-display font-bold mb-4">{step.title}</h3>
-                <p className="text-white/40 text-lg font-light leading-relaxed">{step.desc}</p>
-              </div>
-            </motion.div>
-          ))}
+          {proposalConfig.processSteps.map((step, i) => {
+            const Icon = IconMap[step.icon] || Target;
+            return (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className={cn(
+                  "relative flex items-center mb-32 last:mb-0",
+                  i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                )}
+              >
+                {/* Dot */}
+                <div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-background border border-accent-primary z-10 shadow-[0_0_15px_rgba(169,71,255,0.5)]" />
+                
+                <div className={cn(
+                  "ml-16 md:ml-0 md:w-1/2",
+                  i % 2 === 0 ? "md:pr-24 md:text-right" : "md:pl-24 md:text-left"
+                )}>
+                  <div className="text-[10px] font-bold text-accent-primary uppercase tracking-[0.3em] mb-4">{step.time}</div>
+                  <h3 className="text-3xl font-display font-bold mb-4">{step.title}</h3>
+                  <p className="text-white/40 text-lg font-light leading-relaxed">{step.desc}</p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </Section>
 
@@ -481,15 +490,15 @@ export default function App() {
             className="md:col-span-2 md:row-span-2 glass-morphism p-8 md:p-10 rounded-[32px] flex flex-col justify-between group border-glow"
           >
             <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-tech rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-              <Layout className="w-6 h-6 md:w-8 md:h-8 text-white" />
+              {React.createElement(IconMap[proposalConfig.mainService.icon] || Layout, { className: "w-6 h-6 md:w-8 md:h-8 text-white" })}
             </div>
             <div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-4 break-words">Desenvolvimento Web Full-Stack</h3>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-4 break-words">{proposalConfig.mainService.title}</h3>
               <p className="text-white/50 text-base md:text-lg font-light leading-relaxed mb-8">
-                Criação de ecossistemas digitais completos: Home, Contato, Conteúdo Programático, Vendas e Captura. Tudo otimizado para Wordpress/Elementor com foco em performance extrema.
+                {proposalConfig.mainService.desc}
               </p>
               <div className="flex flex-wrap gap-3">
-                {['Wordpress', 'Elementor', 'SEO', 'Performance'].map(tag => (
+                {proposalConfig.mainService.tags.map(tag => (
                   <span key={tag} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs text-white/60">
                     {tag}
                   </span>
@@ -499,26 +508,25 @@ export default function App() {
           </motion.div>
 
           {/* Secondary Services */}
-          <motion.div whileHover={{ y: -5 }} className="glass-morphism p-8 rounded-[32px] border-glow">
-            <ShieldCheck className="w-10 h-10 text-accent-primary mb-6" />
-            <h4 className="text-xl font-display font-bold mb-2">Garantia de Qualidade</h4>
-            <p className="text-white/40 text-sm leading-relaxed">Processo rigoroso de QA para usabilidade impecável em todos os dispositivos.</p>
-          </motion.div>
-
-          <motion.div whileHover={{ y: -5 }} className="glass-morphism p-8 rounded-[32px] border-glow">
-            <Zap className="w-10 h-10 text-accent-primary mb-6" />
-            <h4 className="text-xl font-display font-bold mb-2">Alta Performance</h4>
-            <p className="text-white/40 text-sm leading-relaxed">Carregamento instantâneo e otimização técnica para conversão máxima.</p>
-          </motion.div>
+          {proposalConfig.secondaryServices.map((service, i) => {
+            const Icon = IconMap[service.icon] || Zap;
+            return (
+              <motion.div key={i} whileHover={{ y: -5 }} className="glass-morphism p-8 rounded-[32px] border-glow">
+                <Icon className="w-10 h-10 text-accent-primary mb-6" />
+                <h4 className="text-xl font-display font-bold mb-2">{service.title}</h4>
+                <p className="text-white/40 text-sm leading-relaxed">{service.desc}</p>
+              </motion.div>
+            );
+          })}
 
           <motion.div whileHover={{ y: -5 }} className="md:col-span-3 glass-morphism p-8 rounded-[32px] flex flex-col items-start md:flex-row md:items-center justify-between gap-8 border-glow">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
               <div className="w-12 h-12 rounded-full bg-accent-primary/20 flex items-center justify-center shrink-0">
-                <Target className="w-6 h-6 text-accent-primary" />
+                {React.createElement(IconMap[proposalConfig.strategyService.icon] || Target, { className: "w-6 h-6 text-accent-primary" })}
               </div>
               <div>
-                <h4 className="text-xl font-display font-bold">Estratégia Orientada a Dados</h4>
-                <p className="text-white/40 text-sm">Cada pixel é posicionado com um propósito comercial claro.</p>
+                <h4 className="text-xl font-display font-bold">{proposalConfig.strategyService.title}</h4>
+                <p className="text-white/40 text-sm">{proposalConfig.strategyService.desc}</p>
               </div>
             </div>
             <button className="w-full md:w-auto px-8 py-3 rounded-full bg-white/5 border border-white/10 text-white text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-all">
