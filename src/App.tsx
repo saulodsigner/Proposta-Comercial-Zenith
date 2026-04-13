@@ -671,7 +671,7 @@ export default function App() {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* Projects List */}
       <Section className="border-t border-white/5">
