@@ -1,22 +1,22 @@
 {
-  "clientName": "Nome do Cliente",
+  "clientName": "Eneufran Santos",
   "proposalType": "Identidade Visual Estratégica",
-  "totalInvestment": "5.000,00",
+  "totalInvestment": "897",
   "paymentSight": {
-    "value": "4.500",
+    "value": "807",
     "discountLabel": "10% de Desconto à Vista"
   },
   "paymentInstallments": {
     "count": 2,
-    "value": "2.500",
-    "label": "2x R$ 2.500"
+    "value": "800",
+    "label": "2x R$ 400"
   },
   "bonus": {
-    "deadline": "15/04/2026",
-    "value": "850,00",
+    "deadline": "16/04/2026",
+    "value": "450,00",
     "items": [
-      "Cartão de Visitas Digital Interativo",
-      "Assinatura de E-mail Personalizada"
+      "Idealização de Camiseta Exclusiva (Mockup)",
+      "Pack de Stories 'High-End' para Treinos"
     ]
   },
   "includedServices": [
@@ -47,7 +47,7 @@
       "time": "Fase 03" 
     },
     { 
-      "title": "Apresentação & Defesa", 
+      "title": "Apresentação", 
       "desc": "Entrega do conceito visual com mockups que mostram a marca aplicada no mundo real.", 
       "icon": "Send", 
       "time": "Fase 04" 
