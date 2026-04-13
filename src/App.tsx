@@ -29,6 +29,7 @@ import aureum2 from './aureum-2.jpg';
 import allas3 from './allas-3.jpg';
 import advogado4 from './advogado-4.jpg';
 import saask5 from './saask-5.jpg';
+import proposalConfig from './proposal-config.json';
 
 const Section = ({ children, className, id }: { children: React.ReactNode, className?: string, id?: string }) => (
   <section id={id} className={cn("py-20 px-6 md:px-12 max-w-7xl mx-auto relative z-10", className)}>
@@ -259,7 +260,7 @@ export default function App() {
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm font-medium text-white/60">
             <span className="text-white/40 uppercase tracking-widest text-[10px]">Cliente:</span>
-            <span className="text-white">Instituto de Educação</span>
+            <span className="text-white">{proposalConfig.clientName}</span>
           </div>
         </div>
       </nav>
@@ -284,7 +285,7 @@ export default function App() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-primary"></span>
               </span>
-              Proposta Exclusiva
+              {proposalConfig.proposalType}
             </motion.div>
             
             <h1 className="text-5xl sm:text-7xl md:text-[120px] font-display font-black tracking-tighter leading-[0.85] mb-12">
@@ -536,7 +537,7 @@ export default function App() {
             INVESTIMENTO <GradientText>ESTRATÉGICO</GradientText>
           </h2>
           <div className="inline-block px-6 py-2 rounded-full glass border-white/10 text-accent-primary font-bold text-xs sm:text-sm tracking-widest uppercase">
-            Valor Total: R$ 10.000,00
+            Valor Total: R$ {proposalConfig.totalInvestment}
           </div>
         </div>
 
@@ -557,22 +558,15 @@ export default function App() {
               <p className="text-black/50 text-sm mb-10">Economia imediata e foco total na execução.</p>
               
               <div className="mb-12">
-                <p className="text-black/30 line-through text-lg sm:text-xl font-medium">R$ 10.000,00</p>
+                <p className="text-black/30 line-through text-lg sm:text-xl font-medium">R$ {proposalConfig.totalInvestment}</p>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-4xl sm:text-6xl font-display font-black">R$ 9.000</span>
+                  <span className="text-4xl sm:text-6xl font-display font-black">R$ {proposalConfig.paymentSight.value}</span>
                   <span className="text-lg sm:text-xl font-bold">,00</span>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-12 w-full">
-                {[
-                  'Design estratégico e personalizado',
-                  'Implementação',
-                  'Atualização de textos, animações e ícones',
-                  'Suporte de 30 dias após entrega',
-                  'Otimização de Performance',
-                  'SEO'
-                ].map(item => (
+                {proposalConfig.includedServices.map(item => (
                   <div key={item} className="flex items-start gap-3 text-sm font-medium leading-tight">
                     <CheckCircle2 className="w-5 h-5 text-black shrink-0 mt-0.5" /> {item}
                   </div>
@@ -598,21 +592,14 @@ export default function App() {
               
               <div className="mb-12">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-4xl sm:text-6xl font-display font-black text-white">2x R$ 5.000</span>
+                  <span className="text-4xl sm:text-6xl font-display font-black text-white">{proposalConfig.paymentInstallments.label}</span>
                   <span className="text-xl font-bold text-white/60">,00</span>
                 </div>
-                <p className="text-white/40 text-sm mt-2">(50% na entrada + 50% na entrega)</p>
+                <p className="text-white/40 text-sm mt-2">({proposalConfig.paymentInstallments.count}x sem juros - Entrada + Entrega)</p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-12 w-full">
-                {[
-                  'Design estratégico e personalizado',
-                  'Implementação',
-                  'Atualização de textos, animações e ícones',
-                  'Suporte de 30 dias após entrega',
-                  'Otimização de Performance',
-                  'SEO'
-                ].map(item => (
+                {proposalConfig.includedServices.map(item => (
                   <div key={item} className="flex items-start gap-3 text-sm font-medium leading-tight text-white/80">
                     <CheckCircle2 className="w-5 h-5 text-accent-primary shrink-0 mt-0.5" /> {item}
                   </div>
@@ -641,14 +628,11 @@ export default function App() {
                 </div>
                 <h3 className="text-3xl md:text-4xl font-display font-bold mb-4">Bônus de Aceleração</h3>
                 <p className="text-white/60 text-sm md:text-base leading-relaxed mb-8">
-                  Fechando o projeto até o dia <span className="text-white font-bold">00/00/2026</span> você ganha esses bônus para turbinar suas conversões:
+                  Fechando o projeto até o dia <span className="text-white font-bold">{proposalConfig.bonus.deadline}</span> você ganha esses bônus para turbinar suas conversões:
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-6">
-                  {[
-                    "Banners de Checkout - Página de vendas",
-                    "Banners de Checkout - Páginas de Captura"
-                  ].map(item => (
+                  {proposalConfig.bonus.items.map(item => (
                     <div key={item} className="flex items-center gap-3 text-sm text-white/80">
                       <CheckCircle2 className="w-5 h-5 text-accent-primary shrink-0" /> {item}
                     </div>
@@ -658,7 +642,7 @@ export default function App() {
 
               <div className="w-full lg:w-auto lg:min-w-[280px]">
                 <div className="px-8 py-10 rounded-3xl bg-accent-primary/10 border border-accent-primary/20 text-center">
-                  <p className="text-accent-primary font-display font-bold text-2xl">Valor agregado de<br />R$ 1.000,00</p>
+                  <p className="text-accent-primary font-display font-bold text-2xl">Valor agregado de<br />R$ {proposalConfig.bonus.value}</p>
                 </div>
               </div>
             </div>
@@ -687,7 +671,7 @@ export default function App() {
             ))}
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* Projects List */}
       <Section className="border-t border-white/5">
