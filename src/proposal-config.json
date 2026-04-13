@@ -1,19 +1,19 @@
 {
   "clientName": "Eneufran Santos",
-  "proposalType": "Identidade Visual Estratégica",
-  "totalInvestment": "897",
+  "proposalType": "Identidade Visual",
+  "totalInvestment": "997",
   "paymentSight": {
-    "value": "807",
+    "value": "897",
     "discountLabel": "10% de Desconto à Vista"
   },
   "paymentInstallments": {
     "count": 2,
-    "value": "800",
-    "label": "2x R$ 400"
+    "value": "897",
+    "label": "2x R$ 448,50"
   },
   "bonus": {
     "deadline": "16/04/2026",
-    "value": "450,00",
+    "value": "250,00",
     "items": [
       "Idealização de Camiseta Exclusiva (Mockup)",
       "Pack de Stories 'High-End' para Treinos"
