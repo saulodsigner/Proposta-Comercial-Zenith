@@ -1,22 +1,22 @@
 {
-  "clientName": "Eneufran Santos",
+  "clientName": "Juan Móveis Industriais",
   "proposalType": "Identidade Visual",
-  "totalInvestment": "997",
+  "totalInvestment": "897",
   "paymentSight": {
-    "value": "897",
+    "value": "797",
     "discountLabel": "10% de Desconto à Vista"
   },
   "paymentInstallments": {
     "count": 2,
-    "value": "897",
-    "label": "2x R$ 448,50"
+    "value": "797",
+    "label": "2x R$ 398,50"
   },
   "bonus": {
-    "deadline": "16/04/2026",
+    "deadline": "25/04/2026",
     "value": "250,00",
     "items": [
-      "Idealização de Camiseta Exclusiva (Mockup)",
-      "Pack de Stories 'High-End' para Treinos"
+      "Pack com 3 Artes Estáticas para Feed",
+      "Página de Links para Biografia do Instagram"
     ]
   },
   "includedServices": [
