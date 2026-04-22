@@ -1,15 +1,15 @@
 {
   "clientName": "Juan Móveis Industriais",
   "proposalType": "Identidade Visual",
-  "totalInvestment": "897",
+  "totalInvestment": "797",
   "paymentSight": {
-    "value": "797",
+    "value": "697",
     "discountLabel": "10% de Desconto à Vista"
   },
   "paymentInstallments": {
     "count": 2,
     "value": "797",
-    "label": "2x R$ 448,50"
+    "label": "2x R$ 398,50"
   },
   "bonus": {
     "deadline": "25/04/2026",
