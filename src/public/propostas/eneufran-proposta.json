@@ -1,1 +1,85 @@
-
+{
+  "clientName": "Eneufran Martins",
+  "proposalType": "Identidade Visual Estratégica",
+  "totalInvestment": "997",
+  "paymentSight": {
+    "value": "897",
+    "discountLabel": "10% de Desconto à Vista"
+  },
+  "paymentInstallments": {
+    "count": 2,
+    "value": "897",
+    "label": "2x R$ 448,50"
+  },
+  "bonus": {
+    "deadline": "16/04/2026",
+    "value": "250,00",
+    "items": [
+      "Idealização de Camiseta Exclusiva (Mockup)",
+      "Pack de Stories 'High-End' para Treinos"
+    ]
+  },
+  "includedServices": [
+    "Logotipo Principal e Secundário",
+    "Paleta de Cores Estratégica",
+    "Tipografia Exclusiva",
+    "Manual da Marca (Brandbook)",
+    "Pattern (Estampa da Marca)",
+    "Mockups de Aplicação Realista"
+  ],
+  "processSteps": [
+    { 
+      "title": "Diagnóstico & Briefing", 
+      "desc": "Análise profunda do seu negócio, público e concorrentes para definir o DNA da marca.", 
+      "icon": "FileText", 
+      "time": "Fase 01" 
+    },
+    { 
+      "title": "Painel Semântico", 
+      "desc": "Curadoria de referências visuais e moodboard que guiarão a estética do projeto.", 
+      "icon": "Layout", 
+      "time": "Fase 02" 
+    },
+    { 
+      "title": "Conceituação & Design", 
+      "desc": "Criação do símbolo e tipografia com foco em memorabilidade e versatilidade.", 
+      "icon": "Target", 
+      "time": "Fase 03" 
+    },
+    { 
+      "title": "Apresentação & Defesa", 
+      "desc": "Entrega do conceito visual com mockups que mostram a marca aplicada no mundo real.", 
+      "icon": "Send", 
+      "time": "Fase 04" 
+    },
+    { 
+      "title": "Manual & Entrega", 
+      "desc": "Envio de todos os arquivos finais e o guia de uso para manter a consistência.", 
+      "icon": "ShieldCheck", 
+      "time": "Fase 05" 
+    }
+  ],
+  "mainService": {
+    "title": "Branding de Alto Padrão",
+    "desc": "Desenvolvimento de uma identidade visual que não apenas parece bonita, mas comunica autoridade e atrai o público certo para o seu negócio.",
+    "icon": "Target",
+    "tags": ["Logo", "Manual", "Tipografia", "Cores"]
+  },
+  "secondaryServices": [
+    { 
+      "title": "Versatilidade Total", 
+      "desc": "Arquivos preparados para impressão, redes sociais e qualquer aplicação digital.", 
+      "icon": "Zap" 
+    },
+    { 
+      "title": "Consistência de Marca", 
+      "desc": "Guia detalhado para que sua marca seja aplicada corretamente em qualquer lugar.", 
+      "icon": "ShieldCheck" 
+    }
+  ],
+  "strategyService": {
+    "title": "Design com Propósito",
+    "desc": "Cada curva e cor é escolhida com base em psicologia visual e estratégia de mercado.",
+    "icon": "FileText"
+  }
+}
