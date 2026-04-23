@@ -29,7 +29,6 @@ import aureum2 from './aureum-2.jpg';
 import allas3 from './allas-3.jpg';
 import advogado4 from './advogado-4.jpg';
 import saask5 from './saask-5.jpg';
-import proposalConfig from './proposal-config.json';
 
 const IconMap: Record<string, any> = {
   CheckCircle2,
@@ -257,6 +256,42 @@ export default function App() {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
 
+  const [proposalConfig, setProposalConfig] = useState<any>(null);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    // Pega o '?id=nomecliente' da URL, se não tiver, busca o 'padrao'
+    const params = new URLSearchParams(window.location.search);
+    const proposalId = params.get('id') || 'padrao';
+    
+    // Busca o arquivo JSON de dentro da pasta public/propostas/
+    fetch(`/propostas/${proposalId}.json`)
+      .then(res => {
+        if (!res.ok) throw new Error('Not found');
+        return res.json();
+      })
+      .then(data => setProposalConfig(data))
+      .catch(() => setError(true));
+  }, []);
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center text-white">
+        <Zap className="w-12 h-12 text-accent-primary mb-6" />
+        <h1 className="text-3xl font-display font-bold mb-2">Proposta não encontrada</h1>
+        <p className="text-white/50">Por favor, verifique o link recebido.</p>
+      </div>
+    );
+  }
+
+  if (!proposalConfig) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="w-8 h-8 rounded-full border-2 border-accent-primary border-t-transparent animate-spin"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background selection:bg-accent-primary/30 overflow-x-hidden relative">
       <Background />
@@ -442,7 +477,7 @@ export default function App() {
             />
           </div>
 
-          {proposalConfig.processSteps.map((step, i) => {
+          {proposalConfig.processSteps.map((step: any, i: number) => {
             const Icon = IconMap[step.icon] || Target;
             return (
               <motion.div
@@ -498,7 +533,7 @@ export default function App() {
                 {proposalConfig.mainService.desc}
               </p>
               <div className="flex flex-wrap gap-3">
-                {proposalConfig.mainService.tags.map(tag => (
+                {proposalConfig.mainService.tags.map((tag: string) => (
                   <span key={tag} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs text-white/60">
                     {tag}
                   </span>
@@ -508,7 +543,7 @@ export default function App() {
           </motion.div>
 
           {/* Secondary Services */}
-          {proposalConfig.secondaryServices.map((service, i) => {
+          {proposalConfig.secondaryServices.map((service: any, i: number) => {
             const Icon = IconMap[service.icon] || Zap;
             return (
               <motion.div key={i} whileHover={{ y: -5 }} className="glass-morphism p-8 rounded-[32px] border-glow">
@@ -574,7 +609,7 @@ export default function App() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-12 w-full">
-                {proposalConfig.includedServices.map(item => (
+                {proposalConfig.includedServices.map((item: string) => (
                   <div key={item} className="flex items-start gap-3 text-sm font-medium leading-tight">
                     <CheckCircle2 className="w-5 h-5 text-black shrink-0 mt-0.5" /> {item}
                   </div>
@@ -607,7 +642,7 @@ export default function App() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-12 w-full">
-                {proposalConfig.includedServices.map(item => (
+                {proposalConfig.includedServices.map((item: string) => (
                   <div key={item} className="flex items-start gap-3 text-sm font-medium leading-tight text-white/80">
                     <CheckCircle2 className="w-5 h-5 text-accent-primary shrink-0 mt-0.5" /> {item}
                   </div>
@@ -640,7 +675,7 @@ export default function App() {
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-6">
-                  {proposalConfig.bonus.items.map(item => (
+                  {proposalConfig.bonus.items.map((item: string) => (
                     <div key={item} className="flex items-center gap-3 text-sm text-white/80">
                       <CheckCircle2 className="w-5 h-5 text-accent-primary shrink-0" /> {item}
                     </div>
