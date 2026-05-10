@@ -581,9 +581,11 @@ export default function App() {
           <h2 className="text-4xl sm:text-5xl md:text-7xl font-display font-black tracking-tighter mb-6">
             INVESTIMENTO <GradientText>ESTRATÉGICO</GradientText>
           </h2>
-          <div className="inline-block px-6 py-2 rounded-full glass border-white/10 text-accent-primary font-bold text-xs sm:text-sm tracking-widest uppercase">
-            Valor Total: {proposalConfig.totalInvestment.includes('A partir') ? proposalConfig.totalInvestment : `R$ ${proposalConfig.totalInvestment}`}
-          </div>
+          {proposalConfig.totalInvestment && (
+            <div className="inline-block px-6 py-2 rounded-full glass border-white/10 text-accent-primary font-bold text-xs sm:text-sm tracking-widest uppercase">
+              Valor Total: R$ {proposalConfig.totalInvestment}
+            </div>
+          )}
         </div>
 
         <div className="max-w-6xl mx-auto relative z-10 space-y-6">
@@ -684,38 +686,39 @@ export default function App() {
               </motion.div>
 
               {/* Option 2 - 50/50 Payment */}
-              <motion.div
-                whileHover={{ y: -5 }}
-                className="p-10 md:p-12 rounded-[40px] glass-morphism border-white/10 relative overflow-hidden group border-glow flex flex-col"
-              >
-                <h3 className="text-3xl font-display font-bold mb-2">Pagamento 50/50</h3>
-                <p className="text-white/40 text-sm mb-10">Divida o investimento entre o início e a entrega.</p>
-                
-                <div className="mb-12">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-4xl sm:text-6xl font-display font-black text-white">{proposalConfig.paymentInstallments.label}</span>
-                    <span className="text-xl font-bold text-white/60">,00</span>
+
+            <motion.div
+              whileHover={{ y: -5 }}
+              className="p-10 md:p-12 rounded-[40px] glass-morphism border-white/10 relative overflow-hidden group border-glow flex flex-col"
+            >
+              <h3 className="text-3xl font-display font-bold mb-2">Pagamento 50/50</h3>
+              <p className="text-white/40 text-sm mb-10">Divida o investimento entre o início e a entrega.</p>
+              
+              <div className="mb-12">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-4xl sm:text-6xl font-display font-black text-white">{proposalConfig.paymentInstallments.label}</span>
+                  <span className="text-xl font-bold text-white/60">,00</span>
+                </div>
+                <p className="text-white/40 text-sm mt-2">({proposalConfig.paymentInstallments.count}x sem juros - Entrada + Entrega)</p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-12 w-full">
+                {proposalConfig.includedServices.map((item: string) => (
+                  <div key={item} className="flex items-start gap-3 text-sm font-medium leading-tight text-white/80">
+                    <CheckCircle2 className="w-5 h-5 text-accent-primary shrink-0 mt-0.5" /> {item}
                   </div>
-                  <p className="text-white/40 text-sm mt-2">({proposalConfig.paymentInstallments.count}x sem juros - Entrada + Entrega)</p>
-                </div>
+                ))}
+              </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-12 w-full">
-                  {proposalConfig.includedServices.map((item: string) => (
-                    <div key={item} className="flex items-start gap-3 text-sm font-medium leading-tight text-white/80">
-                      <CheckCircle2 className="w-5 h-5 text-accent-primary shrink-0 mt-0.5" /> {item}
-                    </div>
-                  ))}
-                </div>
-
-                <a 
-                  href="https://wa.me/82993254247?text=Olá%20Saulo%2C%20escolhi%20o%20plano%20com%20pagamento%2050%2F50."
-                  target="_blank"
-                  className="w-full py-5 rounded-2xl glass border-white/20 text-white font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all inline-flex items-center justify-center mt-auto"
-                >
-                  Selecionar Plano
-                </a>
-              </motion.div>
-            </div>
+              <a 
+                href="https://wa.me/82993254247?text=Olá%20Saulo%2C%20escolhi%20o%20plano%20com%20pagamento%2050%2F50."
+                target="_blank"
+                className="w-full py-5 rounded-2xl glass border-white/20 text-white font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all inline-flex items-center justify-center mt-auto"
+              >
+                Selecionar Plano
+              </a>
+            </motion.div>
+          </div>
           )}
 
           {proposalConfig.plansDisclaimer && (
