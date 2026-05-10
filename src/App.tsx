@@ -477,7 +477,7 @@ export default function App() {
             />
           </div>
 
-          {proposalConfig.processSteps.map((step: any, i: number) => {
+          {proposalConfig.processSteps.map((step, i) => {
             const Icon = IconMap[step.icon] || Target;
             return (
               <motion.div
@@ -533,7 +533,7 @@ export default function App() {
                 {proposalConfig.mainService.desc}
               </p>
               <div className="flex flex-wrap gap-3">
-                {proposalConfig.mainService.tags.map((tag: string) => (
+                {proposalConfig.mainService.tags.map(tag => (
                   <span key={tag} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs text-white/60">
                     {tag}
                   </span>
@@ -543,7 +543,7 @@ export default function App() {
           </motion.div>
 
           {/* Secondary Services */}
-          {proposalConfig.secondaryServices.map((service: any, i: number) => {
+          {proposalConfig.secondaryServices.map((service, i) => {
             const Icon = IconMap[service.icon] || Zap;
             return (
               <motion.div key={i} whileHover={{ y: -5 }} className="glass-morphism p-8 rounded-[32px] border-glow">
@@ -581,11 +581,9 @@ export default function App() {
           <h2 className="text-4xl sm:text-5xl md:text-7xl font-display font-black tracking-tighter mb-6">
             INVESTIMENTO <GradientText>ESTRATÉGICO</GradientText>
           </h2>
-          {proposalConfig.totalInvestment && (
-            <div className="inline-block px-6 py-2 rounded-full glass border-white/10 text-accent-primary font-bold text-xs sm:text-sm tracking-widest uppercase">
-              Valor Total: R$ {proposalConfig.totalInvestment}
-            </div>
-          )}
+          <div className="inline-block px-6 py-2 rounded-full glass border-white/10 text-accent-primary font-bold text-xs sm:text-sm tracking-widest uppercase">
+            Valor Total: R$ {proposalConfig.totalInvestment}
+          </div>
         </div>
 
         <div className="max-w-6xl mx-auto relative z-10 space-y-6">
@@ -703,7 +701,7 @@ export default function App() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-12 w-full">
-                {proposalConfig.includedServices.map((item: string) => (
+                {proposalConfig.includedServices.map(item => (
                   <div key={item} className="flex items-start gap-3 text-sm font-medium leading-tight text-white/80">
                     <CheckCircle2 className="w-5 h-5 text-accent-primary shrink-0 mt-0.5" /> {item}
                   </div>
@@ -743,7 +741,7 @@ export default function App() {
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-6">
-                  {proposalConfig.bonus.items.map((item: string) => (
+                  {proposalConfig.bonus.items.map(item => (
                     <div key={item} className="flex items-center gap-3 text-sm text-white/80">
                       <CheckCircle2 className="w-5 h-5 text-accent-primary shrink-0" /> {item}
                     </div>
