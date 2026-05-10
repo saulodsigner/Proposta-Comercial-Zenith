@@ -1,0 +1,113 @@
+{
+  "clientName": "Nome do Cliente",
+  "proposalType": "Estratégia de Redes Sociais",
+  "processSteps": [
+    {
+      "time": "Fase 01",
+      "title": "Briefing e Estudo de Perfil",
+      "desc": "Mergulho profundo na sua marca, mercado e público-alvo para extrair a essência do que realmente converte.",
+      "icon": "FileText"
+    },
+    {
+      "time": "Fase 02",
+      "title": "Criação da Estratégia",
+      "desc": "Desenvolvimento estratégico focado nos seus objetivos principais: mais autoridade, engajamento e conversões reais.",
+      "icon": "Target"
+    },
+    {
+      "time": "Fase 03",
+      "title": "Linha Editorial e Calendário de Posts",
+      "desc": "Estruturação clara do conteúdo. Definimos exatamente o que postar, quando e com qual objetivo psicológico.",
+      "icon": "Layout"
+    },
+    {
+      "time": "Fase 04",
+      "title": "Início do Alinhamento Visual",
+      "desc": "Elevação estética do seu perfil com design de alto padrão, garantindo que sua marca transmita valor instantâneo.",
+      "icon": "Zap"
+    },
+    {
+      "time": "Fase 05",
+      "title": "Gerenciamento das Postagens",
+      "desc": "Cuidamos de toda a operação. Agendamento, análises, adequação de legendas e consistência impecável.",
+      "icon": "Send"
+    }
+  ],
+  "mainService": {
+    "title": "Gestão Master de Social Media",
+    "desc": "Transformamos seu perfil em uma verdadeira máquina de atração e retenção de clientes. Muito além de curtidas, construímos autoridade e desejo pelo seu produto/serviço.",
+    "icon": "Layout",
+    "tags": ["Conteúdo", "Estratégia", "Design", "Constância"]
+  },
+  "secondaryServices": [
+    {
+      "title": "Textos que Vendem",
+      "desc": "Copywriting estratégico nas legendas para gerar conexão e levar seu público diretamente à ação.",
+      "icon": "FileText"
+    },
+    {
+      "title": "Visual Magnético",
+      "desc": "Design profissional e esteticamente agradável que posiciona sua marca muito acima da concorrência.",
+      "icon": "Zap"
+    }
+  ],
+  "strategyService": {
+    "title": "Foco Total em Autoridade e Escala",
+    "desc": "Seu perfil não será apenas bonito, ele vai trabalhar pela sua marca e comunicar profissionalismo 24 horas por dia.",
+    "icon": "Target",
+    "hideButton": true
+  },
+  "plansDisclaimer": "Atenção: Os Planos Plus e Pro podem ser personalizados de acordo com a sua necessidade (sujeito a adequação de valores). A personalização deve ser alinhada antes do fechamento.",
+  "plans": [
+    {
+      "name": "Plano Plus",
+      "desc": "Crescimento sólido da sua presença no digital.",
+      "price": "479",
+      "recommended": false,
+      "features": [
+        "10 Posts mensais estratégicos",
+        "6 Estáticos (Feed e Story)",
+        "2 Carrosséis Retentivos",
+        "2 Vídeos (Edição Básica)",
+        "Análise inicial do perfil",
+        "Copy persuasiva",
+        "Postagens incluídas"
+      ]
+    },
+    {
+      "name": "Plano Pro",
+      "desc": "Domínio total, máxima autoridade e tração de clientes.",
+      "price": "779",
+      "recommended": true,
+      "features": [
+        "16 Posts mensais avançados",
+        "10 Estáticos (Feed e Story)",
+        "3 Carrosséis Estratégicos",
+        "3 Vídeos (Edição Básica)",
+        "Gerenciamento 100% (fazemos tudo)",
+        "Modificações estratégicas",
+        "Sincronismo de horários de pico"
+      ]
+    },
+    {
+      "name": "Plano Básico",
+      "desc": "Para marcar presença de forma esteticamente impecável.",
+      "price": "179",
+      "recommended": false,
+      "features": [
+        "4 Posts mensais",
+        "Formato Feed e Story",
+        "Design de alta retenção",
+        "Presença mínima ativa"
+      ]
+    }
+  ],
+  "bonus": {
+    "deadline": "11/05/2026",
+    "value": "499,00",
+    "items": [
+      "Bio Site estratégico otimizado para cliques",
+      "2 Posts extras estáticos totalmente gratuitos"
+    ]
+  }
+}
