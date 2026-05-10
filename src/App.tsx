@@ -564,9 +564,11 @@ export default function App() {
                 <p className="text-white/40 text-sm">{proposalConfig.strategyService.desc}</p>
               </div>
             </div>
-            <button className="w-full md:w-auto px-8 py-3 rounded-full bg-white/5 border border-white/10 text-white text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-all">
-              Saber Mais
-            </button>
+            {proposalConfig.strategyService.hideButton !== true && (
+              <button className="w-full md:w-auto px-8 py-3 rounded-full bg-white/5 border border-white/10 text-white text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-all">
+                Saber Mais
+              </button>
+            )}
           </motion.div>
         </div>
       </Section>
@@ -580,84 +582,147 @@ export default function App() {
             INVESTIMENTO <GradientText>ESTRATÉGICO</GradientText>
           </h2>
           <div className="inline-block px-6 py-2 rounded-full glass border-white/10 text-accent-primary font-bold text-xs sm:text-sm tracking-widest uppercase">
-            Valor Total: R$ {proposalConfig.totalInvestment}
+            Valor Total: {proposalConfig.totalInvestment.includes('A partir') ? proposalConfig.totalInvestment : `R$ ${proposalConfig.totalInvestment}`}
           </div>
         </div>
 
         <div className="max-w-6xl mx-auto relative z-10 space-y-6">
-          {/* Tier 1: Main Payment Options */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Option 1 - Payment at Sight */}
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="p-10 md:p-12 rounded-[40px] bg-white text-black relative overflow-hidden group flex flex-col items-start"
-            >
-              <div className="mb-6">
-                <div className="bg-black text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">
-                  Recomendado
-                </div>
-              </div>
-              <h3 className="text-3xl font-display font-bold mb-2">Pagamento à Vista</h3>
-              <p className="text-black/50 text-sm mb-10">Economia imediata e foco total na execução.</p>
-              
-              <div className="mb-12">
-                <p className="text-black/30 line-through text-lg sm:text-xl font-medium">R$ {proposalConfig.totalInvestment}</p>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-4xl sm:text-6xl font-display font-black">R$ {proposalConfig.paymentSight.value}</span>
-                  <span className="text-lg sm:text-xl font-bold">,00</span>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-12 w-full">
-                {proposalConfig.includedServices.map((item: string) => (
-                  <div key={item} className="flex items-start gap-3 text-sm font-medium leading-tight">
-                    <CheckCircle2 className="w-5 h-5 text-black shrink-0 mt-0.5" /> {item}
+          {/* Tier 1: Main Payment Options / Plans */}
+          {proposalConfig.plans ? (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+              {proposalConfig.plans.map((plan: any, i: number) => (
+                <motion.div
+                  key={plan.name}
+                  whileHover={{ y: -5 }}
+                  className={cn(
+                    "p-8 md:p-10 rounded-[40px] relative overflow-hidden flex flex-col group transition-all duration-300",
+                    plan.recommended 
+                      ? "bg-white text-black shadow-2xl scale-100 lg:scale-105 z-10 border border-white" 
+                      : "glass-morphism border-white/10 border-glow text-white"
+                  )}
+                >
+                  {plan.recommended && (
+                    <div className="mb-6">
+                      <div className="bg-black text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest inline-block">
+                        Opção Recomendada
+                      </div>
+                    </div>
+                  )}
+                  <h3 className="text-3xl font-display font-bold mb-2">{plan.name}</h3>
+                  <p className={cn("text-sm mb-10 line-clamp-2", plan.recommended ? "text-black/60" : "text-white/40")}>{plan.desc}</p>
+                  
+                  <div className="mb-12">
+                    <div className="flex items-baseline gap-2">
+                       <span className="text-xl font-bold">R$</span>
+                       <span className="text-5xl font-display font-black">{plan.price}</span>
+                       <span className="text-lg font-bold text-opacity-40">/mês</span>
+                    </div>
                   </div>
-                ))}
-              </div>
 
-              <a 
-                href="https://wa.me/82993254247?text=Olá%20Saulo%2C%20eu%20escolhi%20o%20plano%20com%20pagamento%20á%20vista."
-                target="_blank"
-                className="w-full py-5 rounded-2xl bg-black text-white font-bold text-sm uppercase tracking-widest hover:opacity-90 transition-all inline-flex items-center justify-center mt-auto"
-              >
-                Selecionar Plano
-              </a>
-            </motion.div>
-
-            {/* Option 2 - 50/50 Payment */}
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="p-10 md:p-12 rounded-[40px] glass-morphism border-white/10 relative overflow-hidden group border-glow flex flex-col"
-            >
-              <h3 className="text-3xl font-display font-bold mb-2">Pagamento 50/50</h3>
-              <p className="text-white/40 text-sm mb-10">Divida o investimento entre o início e a entrega.</p>
-              
-              <div className="mb-12">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-4xl sm:text-6xl font-display font-black text-white">{proposalConfig.paymentInstallments.label}</span>
-                  <span className="text-xl font-bold text-white/60">,00</span>
-                </div>
-                <p className="text-white/40 text-sm mt-2">({proposalConfig.paymentInstallments.count}x sem juros - Entrada + Entrega)</p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-12 w-full">
-                {proposalConfig.includedServices.map((item: string) => (
-                  <div key={item} className="flex items-start gap-3 text-sm font-medium leading-tight text-white/80">
-                    <CheckCircle2 className="w-5 h-5 text-accent-primary shrink-0 mt-0.5" /> {item}
+                  <div className="flex flex-col gap-4 mb-12 w-full flex-grow">
+                    {plan.features.map((item: string) => (
+                      <div key={item} className={cn("flex items-start gap-3 text-sm font-medium leading-tight", plan.recommended ? "text-black/80" : "text-white/80")}>
+                        <CheckCircle2 className={cn("w-5 h-5 shrink-0 mt-0.5", plan.recommended ? "text-black" : "text-accent-primary")} /> 
+                        <span>{item}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
 
-              <a 
-                href="https://wa.me/82993254247?text=Olá%20Saulo%2C%20escolhi%20o%20plano%20com%20pagamento%2050%2F50."
-                target="_blank"
-                className="w-full py-5 rounded-2xl glass border-white/20 text-white font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all inline-flex items-center justify-center mt-auto"
+                  <a 
+                    href={`https://wa.me/82993254247?text=Olá%20Saulo%2C%20gostaria%20de%20fechar%20o%20plano%20${plan.name}.`}
+                    target="_blank"
+                    className={cn(
+                      "w-full py-5 rounded-2xl font-bold text-sm uppercase tracking-widest transition-all inline-flex items-center justify-center mt-auto",
+                      plan.recommended 
+                        ? "bg-black text-white hover:opacity-90"
+                        : "glass border-white/20 text-white hover:bg-white/10"
+                    )}
+                  >
+                    Selecionar Plano
+                  </a>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Option 1 - Payment at Sight */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                className="p-10 md:p-12 rounded-[40px] bg-white text-black relative overflow-hidden group flex flex-col items-start"
               >
-                Selecionar Plano
-              </a>
-            </motion.div>
-          </div>
+                <div className="mb-6">
+                  <div className="bg-black text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">
+                    Recomendado
+                  </div>
+                </div>
+                <h3 className="text-3xl font-display font-bold mb-2">Pagamento à Vista</h3>
+                <p className="text-black/50 text-sm mb-10">Economia imediata e foco total na execução.</p>
+                
+                <div className="mb-12">
+                  <p className="text-black/30 line-through text-lg sm:text-xl font-medium">R$ {proposalConfig.totalInvestment}</p>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-4xl sm:text-6xl font-display font-black">R$ {proposalConfig.paymentSight.value}</span>
+                    <span className="text-lg sm:text-xl font-bold">,00</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-12 w-full">
+                  {proposalConfig.includedServices.map((item: string) => (
+                    <div key={item} className="flex items-start gap-3 text-sm font-medium leading-tight">
+                      <CheckCircle2 className="w-5 h-5 text-black shrink-0 mt-0.5" /> {item}
+                    </div>
+                  ))}
+                </div>
+
+                <a 
+                  href="https://wa.me/82993254247?text=Olá%20Saulo%2C%20eu%20escolhi%20o%20plano%20com%20pagamento%20á%20vista."
+                  target="_blank"
+                  className="w-full py-5 rounded-2xl bg-black text-white font-bold text-sm uppercase tracking-widest hover:opacity-90 transition-all inline-flex items-center justify-center mt-auto"
+                >
+                  Selecionar Plano
+                </a>
+              </motion.div>
+
+              {/* Option 2 - 50/50 Payment */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                className="p-10 md:p-12 rounded-[40px] glass-morphism border-white/10 relative overflow-hidden group border-glow flex flex-col"
+              >
+                <h3 className="text-3xl font-display font-bold mb-2">Pagamento 50/50</h3>
+                <p className="text-white/40 text-sm mb-10">Divida o investimento entre o início e a entrega.</p>
+                
+                <div className="mb-12">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-4xl sm:text-6xl font-display font-black text-white">{proposalConfig.paymentInstallments.label}</span>
+                    <span className="text-xl font-bold text-white/60">,00</span>
+                  </div>
+                  <p className="text-white/40 text-sm mt-2">({proposalConfig.paymentInstallments.count}x sem juros - Entrada + Entrega)</p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-12 w-full">
+                  {proposalConfig.includedServices.map((item: string) => (
+                    <div key={item} className="flex items-start gap-3 text-sm font-medium leading-tight text-white/80">
+                      <CheckCircle2 className="w-5 h-5 text-accent-primary shrink-0 mt-0.5" /> {item}
+                    </div>
+                  ))}
+                </div>
+
+                <a 
+                  href="https://wa.me/82993254247?text=Olá%20Saulo%2C%20escolhi%20o%20plano%20com%20pagamento%2050%2F50."
+                  target="_blank"
+                  className="w-full py-5 rounded-2xl glass border-white/20 text-white font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all inline-flex items-center justify-center mt-auto"
+                >
+                  Selecionar Plano
+                </a>
+              </motion.div>
+            </div>
+          )}
+
+          {proposalConfig.plansDisclaimer && (
+            <div className="text-center mt-6 px-6">
+              <p className="text-white/40 text-[11px] uppercase tracking-widest">{proposalConfig.plansDisclaimer}</p>
+            </div>
+          )}
 
           {/* Tier 2: Horizontal Bonus Card */}
           <motion.div
